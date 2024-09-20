@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Game Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        body {
+            background-color: #000; /* Black background */
+            color: #0f0; /* Green text */
+            font-family: 'Press Start 2P', cursive; /* Retro pixel font */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        header div {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        header div a {
+            color: #0f0;
+            text-decoration: none;
+            font-size: 1.2rem;
+            margin-left: 15px;
+        }
+
+        main {
+            text-align: center;
+        }
+
+        main h2 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        main a {
+            color: #0f0;
+            text-decoration: none;
+            border: 2px solid #0f0;
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        main a:hover {
+            background-color: #0f0;
+            color: #000;
+        }
+
+        /* Styling for session username display */
+        header div span {
+            font-size: 1.2rem;
+        }
+
+        /* Press Start 2P font import for retro look */
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Game Over</h1>
+        {% if session.username %}
+            <div>
+                <span>Hello, {{ session.username }}!</span>
+                <a href="{{ url_for('logout') }}">Logout</a>
+            </div>
+        {% endif %}
+    </header>
+
+    <main>
+        {% if success==1 %}
+            <h2>Congratulations! You guessed the word: <strong>{{ word }}</strong></h2>
+        {% else %}
+            <h2>Sorry! You failed to guess the word: <strong>{{ word }}</strong></h2>
+        {% endif %}
+        <a href="{{ url_for('play_again') }}">Play Again</a>
+    </main>
+</body>
+</html>
