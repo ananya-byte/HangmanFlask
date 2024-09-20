@@ -170,17 +170,41 @@ def result():
     print(request.args.get('success'))
     return render_template('result.html', success=success, word=session['word'])
 
-@app.route('/users', methods=['GET'])
-def get_users():
-    conn = get_db_connection()
-    cur = conn.cursor()
-    cur.execute("SELECT * FROM users")  # Change to your table name
-    results = cur.fetchall()
-    cur.close()
+# @app.route('/users', methods=['GET'])
+# def get_users():
+#     conn = get_db_connection()
+#     cur = conn.cursor()
+#     cur.execute("SELECT * FROM users")  # Change to your table name
+#     results = cur.fetchall()
+#     cur.close()
     
-    # Convert results to a list of dictionaries
-    users = [{'username': row[0], 'emails': row[1]} for row in results]
-    return users
+#     # Convert results to a list of dictionaries
+#     users = [{'username': row[0], 'emails': row[1]} for row in results]
+#     return users
+
+# @app.route('/words', methods=['GET'])
+# def get_words():
+#     conn = get_db_connection()
+#     cur = conn.cursor()
+#     cur.execute("SELECT * FROM words")  # Change to your table name
+#     results = cur.fetchall()
+#     cur.close()
+    
+#     # Convert results to a list of dictionaries
+#     users = [{'id': row[0], 'words': row[1]} for row in results]
+#     return users
+
+# @app.route('/completed', methods=['GET'])
+# def get_completed_words():
+#     conn = get_db_connection()
+#     cur = conn.cursor()
+#     cur.execute("SELECT * FROM completed")  # Change to your table name
+#     results = cur.fetchall()
+#     cur.close()
+    
+#     # Convert results to a list of dictionaries
+#     users = [{'id': row[0], 'username': row[1], 'words': row[2]} for row in results]
+#     return users
 
 if __name__ == '__main__':
     app.run(debug=True)
